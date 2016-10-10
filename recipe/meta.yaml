@@ -1,4 +1,4 @@
-{% set version = "2.11.1" %}
+{% set version = "2.12.1" %}
 
 package:
   name: fontconfig
@@ -7,21 +7,17 @@ package:
 source:
   fn: fontconfig-{{ version }}.tar.bz2
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
-  md5: 824d000eb737af6e16c826dd3b2d6c90
+  sha256: b449a3e10c47e1d1c7a6ec6e2016cca73d3bd68fbbd4f0ae5cc6b573f7d6c7f3
   patches:
-    # Fixes a bug seen on Linux ( https://bugs.freedesktop.org/show_bug.cgi?id=77252 ).
-    # The patch is already present in upstream. See link below.
-    # ( https://cgit.freedesktop.org/fontconfig/commit/?id=f44157c809d280e2a0ce87fb078fc4b278d24a67 ).
-    - fc-cache.patch  # [linux]
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
 
 build:
-  number: 4
+  number: 0
   skip: true                      # [win]
   binary_has_prefix_files:        # [linux]
-    - lib/libfontconfig.so.1.8.0  # [linux]
+    - lib/libfontconfig.so.1.9.2  # [linux]
 
 requirements:
   build:
@@ -58,7 +54,7 @@ test:
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
-  summary: A library for configuring and customizing font access.
+  summary: 'A library for configuring and customizing font access.'
 
 extra:
   recipe-maintainers:
